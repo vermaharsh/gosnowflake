@@ -25,6 +25,8 @@ func main() {
 		{Name: "Host", EnvName: "SNOWFLAKE_TEST_HOST", FailOnMissing: false},
 		{Name: "Port", EnvName: "SNOWFLAKE_TEST_PORT", FailOnMissing: false},
 		{Name: "Protocol", EnvName: "SNOWFLAKE_TEST_PROTOCOL", FailOnMissing: false},
+		{Name: "Warehouse", EnvName: "SNOWFLAKE_TEST_WAREHOUSE", FailOnMissing: false},
+		{Name: "Region", EnvName: "SNOWFLAKE_TEST_REGION", FailOnMissing: false},
 	})
 	if err != nil {
 		log.Fatalf("failed to create Config, err: %v", err)
@@ -39,7 +41,7 @@ func main() {
 		log.Fatalf("failed to connect. %v, err: %v", dsn, err)
 	}
 	defer db.Close()
-	query := "SELECT 1"
+	query := "select count(*) from BYOL_TEST.PUBLIC.order_samples"
 	rows, err := db.Query(query) // no cancel is allowed
 	if err != nil {
 		log.Fatalf("failed to run a query. %v, err: %v", query, err)

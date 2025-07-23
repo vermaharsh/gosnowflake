@@ -15,6 +15,7 @@ whitesource/
 *.swp
 cp.out
 __debug_bin*
+cmd_run/
 
 # exclude vendor
 vendor
